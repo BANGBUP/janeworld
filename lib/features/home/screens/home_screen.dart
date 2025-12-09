@@ -299,11 +299,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     );
   }
 
-  Future<void> _downloadFile(String path) async {
-    final uri = Uri.parse(path);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, webOnlyWindowName: '_blank');
-    }
+  Future<void> _downloadFile(String url) async {
+    final uri = Uri.parse(url);
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
   Widget _buildProfileAvatar(BuildContext context, WidgetRef ref, dynamic profile) {
