@@ -218,7 +218,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
               color: const Color(0xFF0078D4),
               onTap: () {
                 Navigator.pop(context);
-                _downloadFile('downloads/JaneWorld-windows.zip');
+                _downloadFile('https://github.com/BANGBUP/janeworld/releases/download/v1.0.0/JaneWorld-windows.zip');
               },
             ),
             const SizedBox(height: 12),
@@ -229,7 +229,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
               color: const Color(0xFF3DDC84),
               onTap: () {
                 Navigator.pop(context);
-                _downloadFile('downloads/JaneWorld.apk');
+                _downloadFile('https://github.com/BANGBUP/janeworld/releases/download/v1.0.0/JaneWorld.apk');
               },
             ),
           ],
