@@ -428,9 +428,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         Expanded(
           flex: 6,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // 오늘의 추천 놀이 카드
               Container(
+                width: double.infinity,
                 height: 220,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
