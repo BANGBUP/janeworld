@@ -362,7 +362,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
       children: [
         // 왼쪽: 캐릭터 + 말풍선
         Expanded(
-          flex: 5,
+          flex: 4,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -426,12 +426,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
         // 오른쪽: 카드들 세로로 배치
         Expanded(
-          flex: 5,
+          flex: 6,
           child: Column(
             children: [
               // 오늘의 추천 놀이 카드
               Container(
-                height: 200,
+                height: 220,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     colors: [Color(0xFF9575CD), Color(0xFF7E57C2)],
@@ -1007,89 +1007,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   // 배경 데코레이션
   // ============================================================
   Widget _buildBackgroundDecorations() {
-    return Stack(
-      children: [
-        // 오른쪽 상단 노란 물방울
-        Positioned(
-          top: -50,
-          right: -30,
-          child: Container(
-            width: 200,
-            height: 200,
-            decoration: BoxDecoration(
-              color: const Color(0xFFFFE082).withOpacity(0.6),
-              borderRadius: BorderRadius.circular(100),
-            ),
-          ),
+    return Positioned.fill(
+      child: Image.asset(
+        'assets/images/home_background.png',
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) => Container(
+          color: const Color(0xFFF5F7FA),
         ),
-        // 왼쪽 상단 하늘색 물방울
-        Positioned(
-          top: 50,
-          left: -60,
-          child: Container(
-            width: 180,
-            height: 180,
-            decoration: BoxDecoration(
-              color: const Color(0xFF81D4FA).withOpacity(0.4),
-              borderRadius: BorderRadius.circular(90),
-            ),
-          ),
-        ),
-        // 오른쪽 하단 노란 물방울
-        Positioned(
-          bottom: -80,
-          right: -40,
-          child: Container(
-            width: 250,
-            height: 250,
-            decoration: BoxDecoration(
-              color: const Color(0xFFFFE082).withOpacity(0.5),
-              borderRadius: BorderRadius.circular(125),
-            ),
-          ),
-        ),
-        // 왼쪽 중간 주황 곡선
-        Positioned(
-          top: 300,
-          left: 20,
-          child: Transform.rotate(
-            angle: 0.3,
-            child: Container(
-              width: 60,
-              height: 8,
-              decoration: BoxDecoration(
-                color: const Color(0xFFFF8A65).withOpacity(0.6),
-                borderRadius: BorderRadius.circular(4),
-              ),
-            ),
-          ),
-        ),
-        // 초록 삼각형들
-        Positioned(
-          top: 200,
-          left: 100,
-          child: CustomPaint(
-            size: const Size(20, 20),
-            painter: _TrianglePainter(color: const Color(0xFF81C784).withOpacity(0.5)),
-          ),
-        ),
-        Positioned(
-          top: 350,
-          right: 150,
-          child: CustomPaint(
-            size: const Size(16, 16),
-            painter: _TrianglePainter(color: const Color(0xFF81C784).withOpacity(0.4)),
-          ),
-        ),
-        Positioned(
-          bottom: 200,
-          left: 80,
-          child: CustomPaint(
-            size: const Size(14, 14),
-            painter: _TrianglePainter(color: const Color(0xFF81C784).withOpacity(0.5)),
-          ),
-        ),
-      ],
+      ),
     );
   }
 
