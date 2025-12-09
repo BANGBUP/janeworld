@@ -808,15 +808,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   Widget _buildGamePackCard(BuildContext context, GamePack pack) {
     final isInstalled = pack.status == PackStatus.installed;
     final color = _getPackColor(pack.gameType);
-    final icon = _getPackIcon(pack.gameType);
+    final thumbnailPath = 'assets/packs/${pack.packId}/thumbnail.png';
 
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [color, color.withOpacity(0.8)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: color,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
@@ -833,37 +829,67 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
           onTap: isInstalled ? () => context.push('/play/${pack.packId}') : null,
           child: Stack(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Icon(icon, color: Colors.white, size: 28),
-                    ),
-                    const Spacer(),
-                    Text(
-                      pack.name['ko'] ?? pack.name['en'] ?? '',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+              // 썸네일 이미지
+              Positioned.fill(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(24),
+                  child: Image.asset(
+                    thumbnailPath,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      color: color,
+                      child: Icon(
+                        _getPackIcon(pack.gameType),
+                        color: Colors.white.withOpacity(0.3),
+                        size: 60,
                       ),
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      isInstalled ? '${pack.totalLevels}개 레벨' : '설치 필요',
-                      style: const TextStyle(color: Colors.white70, fontSize: 13),
-                    ),
-                  ],
+                  ),
                 ),
               ),
-              // 미설치 표시 (구름 아이콘)
+              // 하단 그라데이션 오버레이
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(24),
+                      bottomRight: Radius.circular(24),
+                    ),
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        color.withOpacity(0.9),
+                      ],
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        pack.name['ko'] ?? pack.name['en'] ?? '',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        isInstalled ? '${pack.totalLevels}개 레벨' : '설치 필요',
+                        style: const TextStyle(color: Colors.white70, fontSize: 12),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              // 미설치 표시
               if (!isInstalled)
                 Positioned(
                   top: 12,
@@ -874,7 +900,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                       color: Colors.white,
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(Icons.cloud_download_outlined, color: color, size: 20),
+                    child: Icon(Icons.cloud_download_outlined, color: color, size: 18),
                   ),
                 ),
             ],

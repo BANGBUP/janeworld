@@ -66,6 +66,9 @@ flutter:
 
   assets:
     - assets/packs/
+    - assets/packs/demo_numbers/
+    - assets/packs/demo_memory/
+    - assets/packs/demo_shapes/
     - assets/audio/sfx/
     - assets/audio/bgm/
     - assets/images/
