@@ -28,7 +28,8 @@
       "Bash(python -m http.server:*)",
       "Bash(\"C:\\flutter\\bin\\flutter.bat\" pub add url_launcher)",
       "Bash(powershell -Command:*)",
-      "Bash(powershell:*)"
+      "Bash(powershell:*)",
+      "Bash(python -c:*)"
     ],
     "deny": [],
     "ask": []
