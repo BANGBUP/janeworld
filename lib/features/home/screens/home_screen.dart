@@ -3,7 +3,8 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
+
+import 'web_utils_stub.dart' if (dart.library.html) 'web_utils.dart' as web_utils;
 
 import '../../../core/theme/app_theme.dart';
 import '../../../core/providers/pack_provider.dart';
@@ -299,9 +300,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     );
   }
 
-  Future<void> _downloadFile(String url) async {
-    final uri = Uri.parse(url);
-    await launchUrl(uri, mode: LaunchMode.externalApplication);
+  void _downloadFile(String url) {
+    web_utils.openUrl(url);
   }
 
   Widget _buildProfileAvatar(BuildContext context, WidgetRef ref, dynamic profile) {
