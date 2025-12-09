@@ -60,35 +60,42 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
-      body: SafeArea(
-        child: packsAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, stack) => Center(child: Text('Error: $error')),
-          data: (packs) => SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // 1. 헤더
-                _buildHeader(context, ref, profile),
-                const SizedBox(height: 24),
+      body: Stack(
+        children: [
+          // 배경 데코레이션
+          _buildBackgroundDecorations(),
+          // 메인 콘텐츠
+          SafeArea(
+            child: packsAsync.when(
+              loading: () => const Center(child: CircularProgressIndicator()),
+              error: (error, stack) => Center(child: Text('Error: $error')),
+              data: (packs) => SingleChildScrollView(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // 1. 헤더
+                    _buildHeader(context, ref, profile),
+                    const SizedBox(height: 24),
 
-                // 2. 캐릭터 호스트 섹션 (캐릭터 + 오른쪽 카드들)
-                _buildCharacterHostSection(
-                  context,
-                  ref,
-                  profile?.name ?? '친구',
-                  character,
-                  recommendation,
+                    // 2. 캐릭터 호스트 섹션 (캐릭터 + 오른쪽 카드들)
+                    _buildCharacterHostSection(
+                      context,
+                      ref,
+                      profile?.name ?? '친구',
+                      character,
+                      recommendation,
+                    ),
+                    const SizedBox(height: 24),
+
+                    // 4. 내 게임팩 섹션
+                    _buildMyGamePacksSection(context, packs),
+                  ],
                 ),
-                const SizedBox(height: 24),
-
-                // 4. 내 게임팩 섹션
-                _buildMyGamePacksSection(context, packs),
-              ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -424,7 +431,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
             children: [
               // 오늘의 추천 놀이 카드
               Container(
-                padding: const EdgeInsets.all(24),
+                height: 200,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     colors: [Color(0xFF9575CD), Color(0xFF7E57C2)],
@@ -440,62 +447,104 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                     ),
                   ],
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Stack(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Text(
-                        '오늘의 추천 놀이',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
+                    // 배경 데코 (작은 별들)
+                    Positioned(
+                      top: 20,
+                      right: 180,
+                      child: Icon(Icons.star, color: Colors.white.withOpacity(0.2), size: 16),
+                    ),
+                    Positioned(
+                      top: 60,
+                      right: 200,
+                      child: Icon(Icons.star, color: Colors.white.withOpacity(0.15), size: 12),
+                    ),
+                    Positioned(
+                      bottom: 40,
+                      right: 160,
+                      child: Icon(Icons.star, color: Colors.white.withOpacity(0.2), size: 14),
+                    ),
+                    // 썸네일 이미지
+                    Positioned(
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(24),
+                          bottomRight: Radius.circular(24),
                         ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      recommendation.title,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '$userName랑 같이 ${recommendation.subtitle}',
-                      style: const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 15,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    // 플레이 버튼
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: InkWell(
-                        onTap: () {
-                          context.push('/play/${recommendation.packId}/${recommendation.levelId}');
-                        },
-                        borderRadius: BorderRadius.circular(40),
-                        child: Container(
-                          padding: const EdgeInsets.all(14),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.play_arrow_rounded,
-                            color: Colors.white,
-                            size: 36,
+                        child: Image.asset(
+                          'assets/packs/${recommendation.packId}/thumbnail.png',
+                          width: 180,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) => Container(
+                            width: 180,
+                            color: Colors.white.withOpacity(0.1),
                           ),
                         ),
+                      ),
+                    ),
+                    // 텍스트 콘텐츠
+                    Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: const Text(
+                              '오늘의 추천 놀이',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            recommendation.title,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            '$userName랑 같이 ${recommendation.subtitle}',
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 15,
+                            ),
+                          ),
+                          const Spacer(),
+                          // 플레이 버튼
+                          InkWell(
+                            onTap: () {
+                              context.push('/play/${recommendation.packId}/${recommendation.levelId}');
+                            },
+                            borderRadius: BorderRadius.circular(40),
+                            child: Container(
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.2),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.play_arrow_rounded,
+                                color: Colors.white,
+                                size: 28,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -954,6 +1003,96 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     );
   }
 
+  // ============================================================
+  // 배경 데코레이션
+  // ============================================================
+  Widget _buildBackgroundDecorations() {
+    return Stack(
+      children: [
+        // 오른쪽 상단 노란 물방울
+        Positioned(
+          top: -50,
+          right: -30,
+          child: Container(
+            width: 200,
+            height: 200,
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFE082).withOpacity(0.6),
+              borderRadius: BorderRadius.circular(100),
+            ),
+          ),
+        ),
+        // 왼쪽 상단 하늘색 물방울
+        Positioned(
+          top: 50,
+          left: -60,
+          child: Container(
+            width: 180,
+            height: 180,
+            decoration: BoxDecoration(
+              color: const Color(0xFF81D4FA).withOpacity(0.4),
+              borderRadius: BorderRadius.circular(90),
+            ),
+          ),
+        ),
+        // 오른쪽 하단 노란 물방울
+        Positioned(
+          bottom: -80,
+          right: -40,
+          child: Container(
+            width: 250,
+            height: 250,
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFE082).withOpacity(0.5),
+              borderRadius: BorderRadius.circular(125),
+            ),
+          ),
+        ),
+        // 왼쪽 중간 주황 곡선
+        Positioned(
+          top: 300,
+          left: 20,
+          child: Transform.rotate(
+            angle: 0.3,
+            child: Container(
+              width: 60,
+              height: 8,
+              decoration: BoxDecoration(
+                color: const Color(0xFFFF8A65).withOpacity(0.6),
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+          ),
+        ),
+        // 초록 삼각형들
+        Positioned(
+          top: 200,
+          left: 100,
+          child: CustomPaint(
+            size: const Size(20, 20),
+            painter: _TrianglePainter(color: const Color(0xFF81C784).withOpacity(0.5)),
+          ),
+        ),
+        Positioned(
+          top: 350,
+          right: 150,
+          child: CustomPaint(
+            size: const Size(16, 16),
+            painter: _TrianglePainter(color: const Color(0xFF81C784).withOpacity(0.4)),
+          ),
+        ),
+        Positioned(
+          bottom: 200,
+          left: 80,
+          child: CustomPaint(
+            size: const Size(14, 14),
+            painter: _TrianglePainter(color: const Color(0xFF81C784).withOpacity(0.5)),
+          ),
+        ),
+      ],
+    );
+  }
+
   Color _getPackColor(String gameType) {
     switch (gameType) {
       case 'NumberLetterGame':
@@ -979,4 +1118,29 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         return Icons.games_rounded;
     }
   }
+}
+
+/// 삼각형 페인터
+class _TrianglePainter extends CustomPainter {
+  final Color color;
+
+  _TrianglePainter({required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.fill;
+
+    final path = Path()
+      ..moveTo(size.width / 2, 0)
+      ..lineTo(size.width, size.height)
+      ..lineTo(0, size.height)
+      ..close();
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
