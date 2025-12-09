@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter create:*)",
+      "Bash(where:*)",
+      "Bash(dir /s /b C:flutterbinflutter.bat)",
+      "Bash(dir /s /b D:flutterbinflutter.bat)",
+      "Bash(dir /s /b \"%USERPROFILE%\\flutter\\bin\\flutter.bat\")",
+      "Bash(C:flutterbinflutter --version)",
+      "Bash(cmd /c:*)",
+      "Bash(dir \"C:\\flutter\\bin\")",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" doctor -v)",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" pub get)",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" run -d windows)",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" create --platforms windows,android,ios . --org com.janeworld)",
+      "Bash(start ms-settings:developers)",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" build windows)",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" attach -d windows)",
+      "Bash(dir:*)",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" analyze)",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" analyze lib/features/home/widgets/character_creation_sheet.dart)",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" build windows --release)",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" build apk --release)",
+      "Bash(copy:*)",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" config --list)",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" create --platforms web .)",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" build web --release)",
+      "Bash(python -m http.server:*)",
+      "Bash(\"C:\\flutter\\bin\\flutter.bat\" pub add url_launcher)",
+      "Bash(powershell -Command:*)",
+      "Bash(powershell:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

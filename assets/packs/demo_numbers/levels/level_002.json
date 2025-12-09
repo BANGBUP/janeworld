@@ -1,0 +1,36 @@
+{
+  "level_id": "level_002",
+  "level_number": 2,
+
+  "metadata": {
+    "title": { "ko": "별 세기", "en": "Counting Stars" },
+    "description": { "ko": "별이 몇 개일까요?" },
+    "difficulty": 1,
+    "estimated_time_seconds": 30
+  },
+
+  "unlock_condition": {
+    "type": "previous_level",
+    "previous_level_id": "level_001",
+    "min_stars": 1
+  },
+
+  "game_config": {
+    "type": "NumberLetterGame",
+    "mode": "counting",
+    "settings": {
+      "target_number": 3,
+      "count_objects": "star",
+      "choices": [2, 3, 4, 5],
+      "show_hint": true,
+      "instruction": "별이 몇 개일까요?"
+    }
+  },
+
+  "assets": {},
+
+  "rewards": {
+    "stars_possible": 3,
+    "completion_xp": 10
+  }
+}

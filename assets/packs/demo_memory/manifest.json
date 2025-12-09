@@ -1,0 +1,54 @@
+{
+  "pack_id": "demo_memory",
+  "version": "1.0.0",
+  "pack_format_version": 1,
+
+  "metadata": {
+    "name": {
+      "ko": "기억력 게임",
+      "en": "Memory Game"
+    },
+    "description": {
+      "ko": "같은 카드를 찾아보아요!",
+      "en": "Find matching cards!"
+    },
+    "author": "JaneWorld Team",
+    "created_at": "2024-01-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  },
+
+  "requirements": {
+    "min_app_version": "1.0.0",
+    "required_engines": ["MemoryCardGame"],
+    "required_features": ["touch"],
+    "storage_size_mb": 8
+  },
+
+  "targeting": {
+    "age_range": {
+      "min": 4,
+      "max": 8
+    },
+    "skill_tags": ["memory", "matching", "concentration"],
+    "difficulty": "beginner",
+    "estimated_play_time_minutes": 20
+  },
+
+  "content": {
+    "game_type": "MemoryCardGame",
+    "total_levels": 3,
+    "levels_index": "levels/index.json",
+    "supports_character_integration": false,
+    "default_locale": "ko",
+    "supported_locales": ["ko", "en"]
+  },
+
+  "assets": {
+    "icon": "icon.png",
+    "thumbnail": "thumbnail.png"
+  },
+
+  "monetization": {
+    "type": "free"
+  }
+}

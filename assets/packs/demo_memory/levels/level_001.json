@@ -1,0 +1,37 @@
+{
+  "level_id": "level_001",
+  "level_number": 1,
+
+  "metadata": {
+    "title": { "ko": "과일 카드", "en": "Fruit Cards" },
+    "description": { "ko": "같은 과일 카드를 찾아보세요!" },
+    "difficulty": 1,
+    "estimated_time_seconds": 60
+  },
+
+  "unlock_condition": {
+    "type": "none"
+  },
+
+  "game_config": {
+    "type": "MemoryCardGame",
+    "mode": "match_pairs",
+    "settings": {
+      "grid": { "rows": 2, "cols": 3 },
+      "card_pairs": [
+        { "id": "pair_1", "card_a": { "type": "emoji", "content": "🍎" }, "card_b": { "type": "emoji", "content": "🍎" } },
+        { "id": "pair_2", "card_a": { "type": "emoji", "content": "🍊" }, "card_b": { "type": "emoji", "content": "🍊" } },
+        { "id": "pair_3", "card_a": { "type": "emoji", "content": "🍇" }, "card_b": { "type": "emoji", "content": "🍇" } }
+      ],
+      "flip_duration_ms": 300,
+      "mismatch_delay_ms": 1000
+    }
+  },
+
+  "assets": {},
+
+  "rewards": {
+    "stars_possible": 3,
+    "completion_xp": 10
+  }
+}

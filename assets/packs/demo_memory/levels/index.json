@@ -1,0 +1,16 @@
+{
+  "levels": [
+    {
+      "level_id": "level_001",
+      "config_path": "levels/level_001.json"
+    },
+    {
+      "level_id": "level_002",
+      "config_path": "levels/level_002.json"
+    },
+    {
+      "level_id": "level_003",
+      "config_path": "levels/level_003.json"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "level_id": "level_001",
+  "level_number": 1,
+
+  "metadata": {
+    "title": { "ko": "사과 세기 1", "en": "Counting Apples 1" },
+    "description": { "ko": "사과가 몇 개일까요?" },
+    "difficulty": 1,
+    "estimated_time_seconds": 30
+  },
+
+  "unlock_condition": {
+    "type": "none"
+  },
+
+  "game_config": {
+    "type": "NumberLetterGame",
+    "mode": "counting",
+    "settings": {
+      "target_number": 2,
+      "count_objects": "apple",
+      "choices": [1, 2, 3, 4],
+      "show_hint": true,
+      "instruction": "사과가 몇 개일까요?"
+    }
+  },
+
+  "assets": {
+    "background": null,
+    "bgm": null
+  },
+
+  "rewards": {
+    "stars_possible": 3,
+    "completion_xp": 10
+  }
+}

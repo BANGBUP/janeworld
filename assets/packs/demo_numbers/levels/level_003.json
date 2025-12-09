@@ -1,0 +1,36 @@
+{
+  "level_id": "level_003",
+  "level_number": 3,
+
+  "metadata": {
+    "title": { "ko": "하트 세기", "en": "Counting Hearts" },
+    "description": { "ko": "하트가 몇 개일까요?" },
+    "difficulty": 2,
+    "estimated_time_seconds": 45
+  },
+
+  "unlock_condition": {
+    "type": "previous_level",
+    "previous_level_id": "level_002",
+    "min_stars": 1
+  },
+
+  "game_config": {
+    "type": "NumberLetterGame",
+    "mode": "counting",
+    "settings": {
+      "target_number": 4,
+      "count_objects": "heart",
+      "choices": [3, 4, 5, 6],
+      "show_hint": true,
+      "instruction": "하트가 몇 개일까요?"
+    }
+  },
+
+  "assets": {},
+
+  "rewards": {
+    "stars_possible": 3,
+    "completion_xp": 15
+  }
+}

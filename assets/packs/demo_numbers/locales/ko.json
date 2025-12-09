@@ -1,0 +1,23 @@
+{
+  "locale": "ko",
+  "strings": {
+    "pack.title": "숫자 세기",
+    "pack.description": "1부터 10까지 숫자를 재미있게 배워요!",
+
+    "level.001.title": "사과 세기 1",
+    "level.001.instruction": "사과가 몇 개일까요?",
+    "level.002.title": "별 세기",
+    "level.002.instruction": "별이 몇 개일까요?",
+    "level.003.title": "하트 세기",
+    "level.003.instruction": "하트가 몇 개일까요?",
+    "level.004.title": "꽃 세기",
+    "level.004.instruction": "꽃이 몇 개일까요?",
+    "level.005.title": "공 세기",
+    "level.005.instruction": "공이 몇 개일까요?",
+
+    "common.correct": "정답이에요!",
+    "common.try_again": "다시 해볼까요?",
+    "common.well_done": "잘했어요!",
+    "common.count": "세어보세요"
+  }
+}

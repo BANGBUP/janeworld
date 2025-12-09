@@ -1,0 +1,42 @@
+{
+  "level_id": "level_003",
+  "level_number": 3,
+
+  "metadata": {
+    "title": { "ko": "혼합 카드", "en": "Mixed Cards" },
+    "description": { "ko": "다양한 카드를 찾아보세요!" },
+    "difficulty": 3,
+    "estimated_time_seconds": 120
+  },
+
+  "unlock_condition": {
+    "type": "previous_level",
+    "previous_level_id": "level_002",
+    "min_stars": 1
+  },
+
+  "game_config": {
+    "type": "MemoryCardGame",
+    "mode": "match_pairs",
+    "settings": {
+      "grid": { "rows": 3, "cols": 4 },
+      "card_pairs": [
+        { "id": "pair_1", "card_a": { "type": "emoji", "content": "🌟" }, "card_b": { "type": "emoji", "content": "🌟" } },
+        { "id": "pair_2", "card_a": { "type": "emoji", "content": "🌈" }, "card_b": { "type": "emoji", "content": "🌈" } },
+        { "id": "pair_3", "card_a": { "type": "emoji", "content": "🎈" }, "card_b": { "type": "emoji", "content": "🎈" } },
+        { "id": "pair_4", "card_a": { "type": "emoji", "content": "🎁" }, "card_b": { "type": "emoji", "content": "🎁" } },
+        { "id": "pair_5", "card_a": { "type": "emoji", "content": "🎵" }, "card_b": { "type": "emoji", "content": "🎵" } },
+        { "id": "pair_6", "card_a": { "type": "emoji", "content": "🌸" }, "card_b": { "type": "emoji", "content": "🌸" } }
+      ],
+      "flip_duration_ms": 300,
+      "mismatch_delay_ms": 800
+    }
+  },
+
+  "assets": {},
+
+  "rewards": {
+    "stars_possible": 3,
+    "completion_xp": 20
+  }
+}
